@@ -35,7 +35,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to todos_url, notice: 'Todo was successfully created.' }
+        format.html { redirect_to todos_url }
       else
         format.html { render :new }
       end
@@ -47,7 +47,7 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to todos_url, notice: 'Todo was successfully updated.' }
+        format.html { redirect_to todos_url }
       else
         format.html { render :edit }
       end
@@ -58,7 +58,7 @@ class TodosController < ApplicationController
   def destroy
     @todo.destroy
     respond_to do |format|
-      format.html { redirect_to todos_url, notice: 'Todo was successfully destroyed.' }
+      format.html { redirect_to todos_url }
     end
   end
 

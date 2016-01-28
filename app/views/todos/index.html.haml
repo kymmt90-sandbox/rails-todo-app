@@ -1,19 +1,10 @@
-- provide(:title, 'TODO')
-
-- flash.each do |type, message|
-  %div{ class: "alert alert-#{type}" }= message
-
-%h1 TODO
-
-= link_to '+', new_todo_path
-
-%ul
+%ul.list-group
   - @todos.each do |todo|
-    %li
+    %li.list-group-item
       - if todo.finished
         %del= todo.title
       - else
         %span= todo.title
-      %span= todo.deadline
-      %span= link_to 'edit', edit_todo_url(todo)
-      %span= link_to 'destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
+      %span= "[#{todo.deadline}]"
+      %span.badge= link_to 'destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
+      %span.badge= link_to 'edit', edit_todo_url(todo)
