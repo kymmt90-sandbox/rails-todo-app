@@ -5,23 +5,18 @@
 #  id         :integer          not null, primary key
 #  title      :string
 #  deadline   :date
-#  finished   :boolean
+#  finished   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :edit, :update, :destroy]
+  before_action :set_todo, only: [:edit, :update, :destroy]
 
   # GET /todos
   # GET /todos.json
   def index
     @todos = Todo.all
-  end
-
-  # GET /todos/1
-  # GET /todos/1.json
-  def show
   end
 
   # GET /todos/new
@@ -40,11 +35,9 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render :show, status: :created, location: @todo }
+        format.html { redirect_to todos_url, notice: 'Todo was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,22 +47,18 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
-        format.json { render :show, status: :ok, location: @todo }
+        format.html { redirect_to todos_url, notice: 'Todo was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # DELETE /todos/1
-  # DELETE /todos/1.json
   def destroy
     @todo.destroy
     respond_to do |format|
       format.html { redirect_to todos_url, notice: 'Todo was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

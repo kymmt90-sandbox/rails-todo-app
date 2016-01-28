@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  title      :string
 #  deadline   :date
-#  finished   :boolean
+#  finished   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  title      :string
 #  deadline   :date
-#  finished   :boolean
+#  finished   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -33,12 +33,7 @@ class TodosControllerTest < ActionController::TestCase
       post :create, todo: { deadline: @todo.deadline, finished: @todo.finished, title: @todo.title }
     end
 
-    assert_redirected_to todo_path(assigns(:todo))
-  end
-
-  test "should show todo" do
-    get :show, id: @todo
-    assert_response :success
+    assert_redirected_to todos_path
   end
 
   test "should get edit" do

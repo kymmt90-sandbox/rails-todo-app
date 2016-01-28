@@ -1,25 +1,19 @@
-%h1 Listing todos
+- provide(:title, 'TODO')
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Deadline
-      %th Finished
-      %th
-      %th
-      %th
+- flash.each do |type, message|
+  %div{ class: "alert alert-#{type}" }= message
 
-  %tbody
-    - @todos.each do |todo|
-      %tr
-        %td= todo.title
-        %td= todo.deadline
-        %td= todo.finished
-        %td= link_to 'Show', todo
-        %td= link_to 'Edit', edit_todo_path(todo)
-        %td= link_to 'Destroy', todo, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%h1 TODO
 
-%br
+= link_to '+', new_todo_path
 
-= link_to 'New Todo', new_todo_path
+%ul
+  - @todos.each do |todo|
+    %li
+      - if todo.finished
+        %del= todo.title
+      - else
+        %span= todo.title
+      %span= todo.deadline
+      %span= link_to 'edit', edit_todo_url(todo)
+      %span= link_to 'destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
