@@ -17,10 +17,19 @@
 #  updated_at             :datetime         not null
 #
 
-require 'test_helper'
+class UsersController < ApplicationController
+  skip_before_action :check_signed_in, only: [:new]
 
-class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def new
+    if user_signed_in?
+      redirect_to user_path(current_user)
+    else
+      redirect_to new_user_session_url
+    end
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @todos = @user.todos
+  end
 end

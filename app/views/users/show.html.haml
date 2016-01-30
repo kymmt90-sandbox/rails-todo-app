@@ -1,0 +1,17 @@
+%p#notice= notice
+
+%h1= @user.email
+
+%ul.list-group
+  - if @todos.present?
+    - @user.todos.each do |todo|
+      %li.list-group-item
+        - if todo.finished
+          %del= todo.title
+        - else
+          %span= todo.title
+        %span= "[#{todo.deadline}]"
+        %span.badge= link_to 'destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
+        %span.badge= link_to 'edit', edit_todo_url(todo)
+  - else
+    %span no todo exists

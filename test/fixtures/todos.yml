@@ -8,16 +8,25 @@
 #  finished   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  deadline: 2016-01-28
-  finished: false
+  title: task1
+  deadline: 2016-01-20
+  finished: true
+  user: one
 
 two:
-  title: MyString
-  deadline: 2016-01-28
+  title: task2
+  deadline: 2016-02-28
   finished: false
+  user: one
+
+three:
+  title: task3
+  deadline: 2016-03-01
+  finished: false
+  user: two

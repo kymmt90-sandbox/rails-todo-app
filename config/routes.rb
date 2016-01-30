@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users, except: [:index]
 
   resources :todos, except: :show do
     member do
@@ -7,5 +8,5 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'todos#index'
+  root 'users#new'
 end

@@ -19,7 +19,7 @@
 
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class UsersControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
